@@ -42,10 +42,22 @@ for (var i = 0; i < numberOfDrumButtons; i++) {
     var buttonInnerHTML = this.innerHTML;
 
     sounds(buttonInnerHTML);
+    addAnimation(buttonInnerHTML);
   });
 }
 
 document.addEventListener("keydown", function (event) {
   var keyPressed = event.key;
   sounds(keyPressed);
+  addAnimation(event.key);
 });
+
+function addAnimation(currentKey) {
+  var activeButton = document.querySelector("." + currentKey);
+
+  activeButton.classList.add("pressed");
+
+  setTimeout(function () {
+    activeButton.classList.remove("pressed");
+  }, 100);
+}
